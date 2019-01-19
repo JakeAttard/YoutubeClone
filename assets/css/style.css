@@ -39,6 +39,11 @@ body {
 
 #mainSectionContainer {
     padding-top: 56px;
+    display: flex;
+}
+
+#mainSectionContainer.leftPadding {
+    padding-left: 240px;
 }
 
 #mainContentContainer {
