@@ -17,14 +17,24 @@
     <div id="pageContainer">
         <div id="mastHeadContainer">
             <button class="navShowHide">
-                <img src="assets/images/icons/menu.png">
+                <img src="assets/images/icons/menu.png" alt="Menu Icon">
             </button>
             <a class="logoContainer" href="index.php">
                 <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site Logo">
             </a>
+
+            <div class="searchBarContainer">
+                <form action="search.php" method="GET">
+                    <input type="text" class="searchBar" name="term" placeholder="Search...">
+                    <button class="searchButton">
+                        <img src="assets/images/icons/search.png" alt="Search Icon">
+                    </button>
+                </form>
+            </div>
+
         </div>
 
-        <div id="sideNavContainer" style"display:none;">
+        <div id="sideNavContainer" style="display:none;">
 
         </div>
 
