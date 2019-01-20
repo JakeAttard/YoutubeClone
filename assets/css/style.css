@@ -26,6 +26,20 @@ body {
     align-items: center;
 }
 
+#mastHeadContainer button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+}
+
+#mastHeadContainer button img {
+    width: 100%;
+}
+
 #sideNavContainer {
     width: 240px;
     background-color: #f5f5f5;
