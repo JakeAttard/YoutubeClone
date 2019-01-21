@@ -3,7 +3,7 @@ class VideoProcessor {
 
     private $con;
     private $sizeLimit = 500000000;
-    private $allowedTypes = array("mp4", "flv", "webn", "mkv", "vob", "ogv", "ogg", "avi", "mov", "mpeg", "mpg");
+    private $allowedTypes = array("mp4", "flv", "webn", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
 
     public function __construct($con) {
         $this->con = $con;
@@ -24,7 +24,12 @@ class VideoProcessor {
         }
 
         if(move_uploaded_file($videoData["tmp_name"], $tempFilePath)) {
-            echo "File moved sccessfully";
+            $finalFilePath = $targetDir . uniqid() . ".mp4";
+
+            if(!$this->insertVideoData($videoUploadData, $finalFilePath)) {
+                echo "Insert query failed";
+                return false;
+            }
         }
     }
 
@@ -58,6 +63,20 @@ class VideoProcessor {
 
     private function hasError($data) {
         return $data["error"] != 0;
+    }
+
+    private function insertVideoData($uploadData, $filePath) {
+        $query = $this->con->prepare("INSERT INTO videos(title, uploadedBy, description, privacy, category, filePath) 
+                                        VALUES(:title, :uploadedBy, :description, :privacy, :category, :filePath)");
+
+        $query->bindParam(":title", $uploadData->title);
+        $query->bindParam(":uploadedBy", $uploadData->uploadedBy);
+        $query->bindParam(":description", $uploadData->description);
+        $query->bindParam(":privacy", $uploadData->privacy);
+        $query->bindParam(":category", $uploadData->category);
+        $query->bindParam(":filePath", $filePath);
+
+        return $query->execute();
     }
 }
 ?>
