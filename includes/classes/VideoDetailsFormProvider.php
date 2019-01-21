@@ -15,7 +15,7 @@ class VideoDetailsFormProvider {
         $categoriesInput = $this->createCategoriesInput();
         $uploadButton = $this->createUploadButton();
 
-        return "<form action='processing.php' method='POST'>
+        return "<form action='processing.php' method='POST' enctype='multipart/form-data'>
                     $fileInput
                     $titleInput
                     $descriptionInput
@@ -73,7 +73,7 @@ class VideoDetailsFormProvider {
     }
 
     private function createUploadButton() {
-        return "<button type='submit' class='btn btn-primary' name='upload'>Upload</button>";
+        return "<button type='submit' class='btn btn-primary' name='uploadButton'>Upload</button>";
     }
 }
 
