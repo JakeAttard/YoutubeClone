@@ -17,11 +17,13 @@
 <body>
     <div class="signInContainer">
         <div class="column">
+            
             <div class="header">
                 <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site Logo">
                 <h3>Sign Up</h3>
                 <span>to continue to Youtube Clone</span>
             </div>
+
             <div class="loginForm">
                 <form action="signUp.php" method="POST">
                     <input type="text" name="firstName" placeholder="First name" autocomplete="off" required>
