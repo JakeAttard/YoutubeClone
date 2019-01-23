@@ -23,8 +23,16 @@
                 <span>to continue to Youtube Clone</span>
             </div>
             <div class="loginForm">
-                <form action="signUp.php">
-                    
+                <form action="signUp.php" method="POST">
+                    <input type="text" name="firstName" placeholder="First name" autocomplete="off" required>
+                    <input type="text" name="lastName" placeholder="Last name" autocomplete="off" required>
+                    <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+                    <input type="email" name="email" placeholder="Email" autocomplete="off" required>
+                    <input type="email" name="confirmEmail" placeholder="Confirm Email" autocomplete="off" required>
+                    <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="off" required>
+
+                    <input type="submit" name="submitButton" value="SUBMIT">
                 </form>
             </div>
 
