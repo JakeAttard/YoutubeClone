@@ -1,0 +1,19 @@
+.signInContainer {
+    background-color: #efefee;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signInContainer .column .header img {
+    width: 100px;
+}
+
+.signInContainer .column {
+    flex-grow: 0;
+    width: 450px;
+    padding: 20px 35px;
+    max-height: 100%;
+    overflow-y: auto;
+}
