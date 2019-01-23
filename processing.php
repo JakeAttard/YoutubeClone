@@ -12,4 +12,8 @@ $videoUploadData = new VideoUploadData($_FILES["fileInput"], $_POST["titleInput"
 
 $videoProcessor = new VideoProcessor($con);
 $wasSuccessful = $videoProcessor->upload($videoUploadData);
+
+if($wasSuccessful) {
+    echo "Upload successful";
+}
 ?>
