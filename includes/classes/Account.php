@@ -18,6 +18,12 @@ class Account {
         }
     }
 
+    private function validateLastName($lastName) {
+        if(strlen($lastName) > 25 || strlen($lastName) < 2) {
+            array_push($this->errorArray, Constants::$lastNameCharacters);
+        }
+    }
+
     public function getError($error) {
         if(in_array($error, $this->errorArray)) {
             return "<span class='errorMessage'>$error</span>";

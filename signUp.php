@@ -51,7 +51,10 @@ if(isset($_POST["submitButton"])) {
 
                     <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                     <input type="text" name="firstName" placeholder="First name" autocomplete="off" required>
+
+                    <?php echo $account->getError(Constants::$lastNameCharacters); ?>
                     <input type="text" name="lastName" placeholder="Last name" autocomplete="off" required>
+                    
                     <input type="text" name="username" placeholder="Username" autocomplete="off" required>
                     <input type="email" name="email" placeholder="Email" autocomplete="off" required>
                     <input type="email" name="confirmEmail" placeholder="Confirm Email" autocomplete="off" required>
