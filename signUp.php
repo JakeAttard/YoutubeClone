@@ -18,7 +18,12 @@ if(isset($_POST["submitButton"])) {
     $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
     $confirmPassword = FormSanitizer::sanitizeFormPassword($_POST["confirmPassword"]);
 
-    $account->register($firstName, $lastName, $username, $email, $confirmEmail, $password, $confirmPassword);
+    $wasSuccessful = $account->register($firstName, $lastName, $username, $email, $confirmEmail, $password, $confirmPassword);
+
+    if($wasSuccessful) {
+        
+    }
+
 }
 ?>
 <!DOCTYPE html>
