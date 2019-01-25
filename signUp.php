@@ -21,7 +21,9 @@ if(isset($_POST["submitButton"])) {
     $wasSuccessful = $account->register($firstName, $lastName, $username, $email, $confirmEmail, $password, $confirmPassword);
 
     if($wasSuccessful) {
-
+        echo "SUCCESS";
+    } else {
+        echo "FAILED";
     }
 
 }

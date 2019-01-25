@@ -23,7 +23,19 @@ class Account {
     }
 
     public function insertUserDetails($firstName, $lastName, $username, $email, $password) {
-        return true;
+        $password = hash("sha512", $password);
+        $profilePic = "assets/images/profilePictures/default.png";
+
+        $query = $this->con->prepare("INSERT INTO users (firstName, lastName, username, email, password, profilePic) VALUES(:firstName, :lastName, :username, :email, :password, :profilePic)");
+
+        $query->bindParam(":firstName", $firstName);
+        $query->bindParam(":lastName", $lastName);
+        $query->bindParam(":username", $username);
+        $query->bindParam(":email", $email);
+        $query->bindParam(":password", $password);
+        $query->bindParam(":profilePic", $profilePic);
+
+        return $query->execute();
     }
 
     private function validateFirstName($firstName) {
