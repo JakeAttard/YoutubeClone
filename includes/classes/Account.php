@@ -13,6 +13,7 @@ class Account {
         $this->validateLastName($lastName);
         $this->validateUsername($username);
         $this->validateEmails($email, $confirmEmail);
+        $this->validatePasswords($password, $confirmPassword);
     }
 
     private function validateFirstName($firstName) {
@@ -59,6 +60,22 @@ class Account {
 
         if($query->rowCount() != 0) {
             array_push($this->errorArray, Constants::$emailTaken);
+        }
+    }
+
+    private function validatePasswords($password, $confirmPassword) {
+        if($password != $confirmPassword) {
+            array_push($this->errorArray, Constants::$passwordsDoNotMatch);
+            return;
+        }
+
+        if(preg_match("/[^A-Za-z0-9]/", $password)) {
+            array_push($this->errorArray, Constants::$passwordNotAlphanumeric);
+            return;
+        }
+
+        if(strlen($password) > 30 || strlen($password) < 6) {
+            array_push($this->errorArray, Constants::$passwordLength);
         }
     }
 
