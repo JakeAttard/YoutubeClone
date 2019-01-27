@@ -57,5 +57,15 @@ class Video {
     public function getDuration() {
         return $this->sqlData["duration"];
     }
+
+    public function incrementViews() {
+        $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=:id");
+        $query->bindParam(":id", $videoId);
+
+        $videoId = $this->getId();
+        $query->execute();
+
+        $this->sqlData["views"] = $this->sqlData["views"] + 1;
+    }
 }
 ?>
