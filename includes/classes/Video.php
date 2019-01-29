@@ -69,7 +69,13 @@ class Video {
     }
 
     public function getLikes() {
-        return 5;
+        $query = $this->con->prepare("SELECT count(*) as 'count' FROM likes WHERE videoId= :videoId");
+        $query->bindParam(":videoId", $videoId);
+        $videoId = $this->getId();
+        $query->execute();
+
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        return $data["count"];
     }
 }
 ?>
