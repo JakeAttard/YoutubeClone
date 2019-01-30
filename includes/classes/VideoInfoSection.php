@@ -39,6 +39,12 @@ class VideoInfoSection {
         $uploadedBy = $this->video->getUploadedBy();
         $profileButton = ButtonProvider::createUserProfileButton($this->con, $uploadedBy);
 
+        if($uploadedBy == $this->userLoggedInObj->getUsername()) {
+            $actionButton = ButtonProvider::createEditVideoButton($this->video->getId());
+        } else {
+            $actionButton = "";
+        }
+
         return "<div class='secondaryInfo'>
                     <div class='topRow'>
                         $profileButton
@@ -55,6 +61,7 @@ class VideoInfoSection {
                             </span>
 
                         </div>
+                        $actionButton
                     </div>
                 </div>";
     }
