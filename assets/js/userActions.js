@@ -5,7 +5,7 @@ function subscribe(userTo, userFrom, button) {
         return;
     }
 
-    $.post("ajax/subscribe.php").done(function() {
-        console.log("done");
+    $.post("ajax/subscribe.php", { userTo: userTo, userFrom: userFrom }).done(function(data) {
+        console.log(data);
     });
 }
