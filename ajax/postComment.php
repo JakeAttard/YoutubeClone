@@ -3,11 +3,11 @@ require_once("../includes/config.php");
 
 if(isset($_POST['commentText']) && isset($_POST['postedBy']) && isset($_POST['videoId'])) {
 
-    $query = $con->prepare("INSERT INTO comments(postedBy, videoId, responseTo, body) VALUES(:postedBy, :videoId, :responseTo, :body)");
-    $query->bindParam(":postedby", $postedBy);
-    $query->bindParam(":videoId", $videoId);
-    $query->bindParam(":responseTo", $responseTo);
-    $query->bindParam(":body", $commentText);
+    $query = $con->prepare("INSERT INTO comments(postedBy, videoId, responseTo, body) VALUES(:pb, :vi, :rt, :bdy)");
+    $query->bindParam(":pb", $postedBy);
+    $query->bindParam(":vi", $videoId);
+    $query->bindParam(":rt", $responseTo);
+    $query->bindParam(":bdy", $commentText);
 
     $postedBy = $_POST['postedBy'];
     $videoId = $_POST['videoId'];
