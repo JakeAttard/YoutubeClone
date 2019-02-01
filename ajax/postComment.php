@@ -5,6 +5,8 @@ require_once("../includes/classes/Comment.php");
 
 if(isset($_POST['commentText']) && isset($_POST['postedBy']) && isset($_POST['videoId'])) {
 
+    $userLoggedInObj = new User($con, $_SESSION["userLoggedIn"]);
+
     $query = $con->prepare("INSERT INTO comments(postedBy, videoId, responseTo, body) VALUES(:pb, :vi, :rt, :bdy)");
     $query->bindParam(":pb", $postedBy);
     $query->bindParam(":vi", $videoId);
@@ -13,12 +15,11 @@ if(isset($_POST['commentText']) && isset($_POST['postedBy']) && isset($_POST['vi
 
     $postedBy = $_POST['postedBy'];
     $videoId = $_POST['videoId'];
-    $responseTo = $_POST['responseTo'];
+    $responseTo = issset($_POST['responseTo']) ? $_POST['responseTo'] : 0;
     $commentText = $_POST['commentText'];
 
     $query->execute();
 
-    $userLoggedInObj = new User($con, $_SESSION["userLoggedIn"]);
     $newComment = new Comment($con, $con->lastInsertId(), $userLoggedInObj, $videoId);
     echo $newComment->create();
 
