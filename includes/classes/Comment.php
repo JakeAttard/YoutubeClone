@@ -9,7 +9,7 @@ class Comment {
         if(!is_array($input)) {
             $query = $con->prepare("SELECT * FROM comments where id= :id");
             $query->bindParam(":id", $input);
-            $query->exectue();
+            $query->execute();
 
             $input = $query->fetch(PDO::FETCH_ASSOC);
         }
@@ -18,6 +18,7 @@ class Comment {
         $this->con = $con;
         $this->userLoggedInObj = $userLoggedInObj;
         $this->videoId = $videoId;
+
     }
 
     public function create() {
