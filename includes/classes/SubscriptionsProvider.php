@@ -27,13 +27,13 @@ class SubscriptionsProvider {
             }
 
             $videoSql = "SELECT * FROM videos $condition ORDER BY uploadDate DESC";
-            $videoQuery = $this->con->prepare($videoQuery);
+            $videoQuery = $this->con->prepare($videoSql);
 
             $i = 1;
 
             foreach($subscriptions as $sub) {
-                $videoQuery->bindParam($i, $subUsername);
                 $subUsername = $sub->getUsername();
+                $videoQuery->bindValue($i, $subUsername);
                 $i++;
             }
 
