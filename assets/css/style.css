@@ -434,6 +434,10 @@ a:hover {
     position: relative;
 }
 
+.suggestions .videoGridItem .thumbnail {
+    margin-right: 8px;
+}
+
 .videoGridItem .thumbnail img {
     width: 100%;
     height: 100%;
@@ -453,4 +457,37 @@ a:hover {
     font-size: 12px;
     font-weight: 500;
     line-height: 12px;
+}
+
+.videoGridItem .details {
+    padding-right: 24px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+}
+
+.suggestions .videoGridItem .details {
+    padding-right: 0;
+    flex: 1;
+}
+
+.videoGridItem .details .title {
+    margin: 8px 0;
+    max-height: 32px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #212529;
+}
+
+.videoGridItem .details .username,
+.videoGridItem .details .stats {
+    color: rgba(17, 17, 17, 0.6);
+    font-size: 13px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
