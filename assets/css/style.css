@@ -556,3 +556,8 @@ a:hover {
 .videoGridHeader a:last-child:after {
     content: ''
 }
+
+.signInLink {
+    color: #f00;
+    margin-left: 15px;
+}
