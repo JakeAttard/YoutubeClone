@@ -66,11 +66,25 @@ class ProfileGenerator {
     }
 
     public function createTabSection() {
-        
+        return "<ul class='nav nav-tabs' role='tablist'>
+                    <li class='nav-item'>
+                        <a class='nav-link active' id='videos-tab' data-toggle='tab' href='#videos' role='tab' aria-controls='videos' aria-selected='true'>VIDEOS</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' id='about-tab' data-toggle='tab' href='#about' role='tab' aria-controls='about' aria-selected='false'>ABOUT</a>
+                    </li>
+                </ul>";
     }
     
     public function createContentSection() {
-        
+        return "<div class='tab-content channelContent'>
+                    <div class='tab-pane fade show active' id='videos' role='tabpanel' aria-labelledby='videos-tab'>
+                        Videos Tab
+                    </div>
+                    <div class='tab-pane fade' id='about' role='tabpanel' aria-labelledby='about-tab'>
+                        About Tab
+                    </div>
+                </div>";
     }
 
     private function createHeaderButton() {
