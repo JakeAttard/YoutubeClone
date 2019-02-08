@@ -46,14 +46,44 @@ class Account {
 
         if(empty($this->errorArray)) {
             $query = $this->con->prepare("UPDATE users SET firstName= :firstName, lastName= :lastName, email= :email WHERE username= :username");
-            $query->bindParam("firstName", $firstName);
-            $query->bindParam("lastName", $lastName);
-            $query->bindParam("email", $email);
-            $query->bindParam("username", $username);
+            $query->bindParam(":firstName", $firstName);
+            $query->bindParam(":lastName", $lastName);
+            $query->bindParam(":email", $email);
+            $query->bindParam(":username", $username);
 
             return $query->execute();
         } else {
             return false;
+        }
+    }
+
+    public function updatePassword($oldPassword, $newPassword, $newPasswordConfirm, $username) {
+        $this->validateOldPassword($oldPassword, $username);
+        $this->validatePasswords($newPassword, $newPasswordConfirm);
+
+        if(empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE users SET password= :newPassword WHERE username= :username");
+            $newPassword = hash("sha512", $newPassword);
+            $query->bindParam(":newPassword", $newPassword);
+            $query->bindParam(":username", $username);
+
+            return $query->execute();
+        } else {
+            return false;
+        }
+    }
+
+    private function validateOldPassword($oldPassword, $username) {
+        $newPassword = hash("sha512", $oldPassword);
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username AND password=:newPassword");
+        $query->bindParam(":username", $username);
+        $query->bindParam(":newPassword", $newPassword);
+
+        $query->execute();
+
+        if($query->rowCount() == 0) {
+            array_push($this->errorArray, Constants::$passwordIncorrect);
         }
     }
 

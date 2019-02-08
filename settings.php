@@ -23,7 +23,7 @@ if(isset($_POST["saveDetailsButton"])) {
 
     if($account->updateDetails($firstName, $lastName, $email, $userLoggedInObj->getUsername())) {
         $detailsMessage = "<div class='alert alert-success'>
-                                <strong>SUCCESS!</strong> Details updates successfully!
+                                <strong>SUCCESS!</strong> Details updated successfully!
                            </div>";
     } else {
         $errorMessage = $account->getFirstError();
@@ -37,7 +37,25 @@ if(isset($_POST["saveDetailsButton"])) {
 }
 
 if(isset($_POST["savePasswordButton"])) {
-    
+    $account = new Account($con);
+
+    $oldPassword = FormSanitizer::sanitizeFormPassword($_POST["oldPassword"]);
+    $newPassword = FormSanitizer::sanitizeFormPassword($_POST["newPassword"]);
+    $newPasswordConfirm = FormSanitizer::sanitizeFormPassword($_POST["newPasswordConfirm"]);
+
+    if($account->updatePassword($oldPassword, $newPassword, $newPasswordConfirm, $userLoggedInObj->getUsername())) {
+        $passwordMessage = "<div class='alert alert-success'>
+                                <strong>SUCCESS!</strong> Password updated successfully!
+                           </div>";
+    } else {
+        $errorMessage = $account->getFirstError();
+
+        if($errorMessage == "") $errorMessage ="Something went wrong";
+
+        $passwordMessage = "<div class='alert alert-danger'>
+                                <strong>ERROR!</strong> $errorMessage
+                           </div>";
+    }
 }
 
 ?>
@@ -57,6 +75,9 @@ if(isset($_POST["savePasswordButton"])) {
     </div>
 
     <div class="formSection">
+        <div class="message">
+                <?php echo $passwordMessage; ?>
+            </div>
         <?php
         echo $formProvider->createPasswordForm();
         ?>
