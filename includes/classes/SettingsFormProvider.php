@@ -8,9 +8,25 @@ class SettingsFormProvider {
         $saveButton = $this->createSaveUserDetailsButton();
 
         return "<form action='processing.php' method='POST' enctype='multipart/form-data'>
+                    <span class='title'>User Details</span>
                     $firstNameInput
                     $lastNameInput
                     $emailInput
+                    $saveButton
+                </form>";
+    }
+
+    public function createPasswordForm() {
+        $oldPasswordInput = $this->createPasswordInput("oldPassword", "Old Password");
+        $newPasswordInput = $this->createPasswordInput("newPassword", "New Password");
+        $newPasswordConfirmInput = $this->createPasswordInput("newPasswordConfirm", "Confirm New Password");
+        $saveButton = $this->createSavePasswordButton();
+
+        return "<form action='processing.php' method='POST' enctype='multipart/form-data'>
+                    <span class='title'>Update Password</span>
+                    $oldPasswordInput
+                    $newPasswordInput
+                    $newPasswordConfirmInput
                     $saveButton
                 </form>";
     }
@@ -42,6 +58,16 @@ class SettingsFormProvider {
     private function createSaveUserDetailsButton() {
         return "<button type='submit' class='btn btn-primary' name='saveDetailsButton'>Save</button>";
     }
-}
 
+    private function createPasswordInput($name, $placeholder) { 
+        return "<div class='form-group'>
+                    <input class='form-control' type='password' placeholder='$placeholder' name='$name' required>
+                </div>";
+    }
+
+    private function createSavePasswordButton() {
+        return "<button type='submit' class='btn btn-primary' name='savePasswordButton'>Save</button>";
+    }
+        
+}
 ?>
