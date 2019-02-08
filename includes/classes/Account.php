@@ -45,7 +45,13 @@ class Account {
         $this->validateNewEmail($email, $username);
 
         if(empty($this->errorArray)) {
-            // Update
+            $query = $this->con->prepare("UPDATE users SET firstName= :firstName, lastName= :lastName, email= :email WHERE username= :username");
+            $query->bindParam("firstName", $firstName);
+            $query->bindParam("lastName", $lastName);
+            $query->bindParam("email", $email);
+            $query->bindParam("username", $username);
+
+            return $query->execute();
         } else {
             return false;
         }
@@ -150,6 +156,14 @@ class Account {
     public function getError($error) {
         if(in_array($error, $this->errorArray)) {
             return "<span class='errorMessage'>$error</span>";
+        }
+    }
+
+    public function getFirsterror() {
+        if(!empty($this->errorArray)) {
+            return $this->errorArray[0];
+        } else {
+            return "";
         }
     }
 }
