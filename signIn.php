@@ -58,6 +58,10 @@ function getInputValue($name) {
                 </form>
             </div>
 
+            <div class="forgotPassword">
+                        <a href="requestReset.php">Forgot Password?</a>
+            </div>
+
             <a class="signInMessage" href="signUp.php">Need an account? Sign up here!</a>
         </div>
     </div>
