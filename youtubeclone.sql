@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 14, 2019 at 07:47 PM
+-- Generation Time: Feb 14, 2019 at 07:53 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.1
 
@@ -177,21 +177,6 @@ CREATE TABLE `thumbnails` (
   `selected` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `thumbnails`
---
-
-INSERT INTO `thumbnails` (`id`, `videoId`, `filePath`, `selected`) VALUES
-(1, 1, 'uploads/videos/thumbnails/1-5c4d08f035113.jpg', 1),
-(2, 1, 'uploads/videos/thumbnails/1-5c4d08f052b3f.jpg', 0),
-(3, 1, 'uploads/videos/thumbnails/1-5c4d08f07394f.jpg', 0),
-(4, 3, 'uploads/videos/thumbnails/3-5c5963243c8c8.jpg', 0),
-(5, 3, 'uploads/videos/thumbnails/3-5c596325402b5.jpg', 1),
-(6, 3, 'uploads/videos/thumbnails/3-5c59632711d91.jpg', 0),
-(7, 4, 'uploads/videos/thumbnails/4-5c61425e0db69.jpg', 0),
-(8, 4, 'uploads/videos/thumbnails/4-5c61425e7f651.jpg', 0),
-(9, 4, 'uploads/videos/thumbnails/4-5c61425f49f8c.jpg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -214,10 +199,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `username`, `email`, `password`, `signUpDate`, `profilePic`) VALUES
-(1, 'Jake', 'Attard', 'jakeattard', 'jakeattard18@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', '2019-01-25 20:32:43', 'assets/images/profilePictures/default-male.png'),
-(2, 'Jack', 'Attard', 'jakeattard1', 'jakeattard19@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', '2019-01-25 20:46:10', 'assets/images/profilePictures/default.png'),
-(3, 'Jake', 'Attard', 'jakeattardtestaccount', 'jakeattardtest@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', '2019-02-08 13:46:09', 'assets/images/profilePictures/default.png'),
-(4, 'Jake', 'Attard', 'jakecattard', 'jakeattard20@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', '2019-02-11 19:24:03', 'assets/images/profilePictures/default.png');
+(5, 'Jake', 'Attard', 'jakeattard', 'jake@jakeattard.com', '3b49389d779322f52da753f984243de92d3c38d08028f984485e6d1d96ffd03ac6ae6a4a5e5b852538a0e850c3adac7a5a3ba03e4926eb2b7e8e3b2e695798e1', '2019-02-14 19:52:06', 'assets/images/profilePictures/default.png');
 
 -- --------------------------------------------------------
 
@@ -343,7 +325,7 @@ ALTER TABLE `thumbnails`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `videos`
