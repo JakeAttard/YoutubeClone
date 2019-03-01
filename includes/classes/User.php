@@ -55,7 +55,7 @@ class User {
     }
 
     public function getSubscriberCount() {
-        $query = $this->con->prepare("SELECT * FROM subscribers WHERE userTo=userTo");
+        $query = $this->con->prepare("SELECT * FROM subscribers WHERE userTo=:userTo");
         $query->bindParam(":userTo", $username);
         $username = $this->getUsername();
         $query->execute();
@@ -63,7 +63,7 @@ class User {
     }
 
     public function getSubscriptions() {
-        $query = $this->con->prepare("SELECT userTo FROM subscribers WHERE userFrom=userFrom");
+        $query = $this->con->prepare("SELECT userTo FROM subscribers WHERE userFrom=:userFrom");
         $username = $this->getUsername();
         $query->bindParam(":userFrom", $username);
         $query->execute();

@@ -10,7 +10,7 @@ class Video {
         if(is_array($input)) {
             $this->sqlData = $input;
         } else {
-            $query = $this->con->prepare("SELECT * FROM videos WHERE id=:id");
+            $query = $this->con->prepare("SELECT * FROM videos WHERE id=id");
             $query->bindParam(":id", $input);
             $query->execute();
 
@@ -65,7 +65,7 @@ class Video {
     }
 
     public function incrementViews() {
-        $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=:id");
+        $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=id");
         $query->bindParam(":id", $videoId);
 
         $videoId = $this->getId();
@@ -75,7 +75,7 @@ class Video {
     }
 
     public function getLikes() {
-        $query = $this->con->prepare("SELECT count(*) as 'count' FROM likes WHERE videoId= :videoId");
+        $query = $this->con->prepare("SELECT count(*) as 'count' FROM likes WHERE videoId=videoId");
         $query->bindParam(":videoId", $videoId);
         $videoId = $this->getId();
         $query->execute();
@@ -85,7 +85,7 @@ class Video {
     }
 
     public function getDislikes() {
-        $query = $this->con->prepare("SELECT count(*) as 'count' FROM dislikes WHERE videoId= :videoId");
+        $query = $this->con->prepare("SELECT count(*) as 'count' FROM dislikes WHERE videoId=videoId");
         $query->bindParam(":videoId", $videoId);
         $videoId = $this->getId();
         $query->execute();
@@ -100,7 +100,7 @@ class Video {
 
         if($this->wasLikedBy()) {
             // User has already liked
-            $query = $this->con->prepare("DELETE FROM likes WHERE username= :username AND videoId= :videoId");
+            $query = $this->con->prepare("DELETE FROM likes WHERE username=username AND videoId=videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
@@ -111,7 +111,7 @@ class Video {
             );
             return json_encode($result);
         } else {
-            $query = $this->con->prepare("DELETE FROM dislikes WHERE username= :username AND videoId= :videoId");
+            $query = $this->con->prepare("DELETE FROM dislikes WHERE username=username AND videoId=videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
@@ -136,7 +136,7 @@ class Video {
 
         if($this->wasDislikedBy()) {
             // User has already liked
-            $query = $this->con->prepare("DELETE FROM dislikes WHERE username= :username AND videoId= :videoId");
+            $query = $this->con->prepare("DELETE FROM dislikes WHERE username=username AND videoId=videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
@@ -147,7 +147,7 @@ class Video {
             );
             return json_encode($result);
         } else {
-            $query = $this->con->prepare("DELETE FROM likes WHERE username= :username AND videoId= :videoId");
+            $query = $this->con->prepare("DELETE FROM likes WHERE username=username AND videoId=videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
@@ -167,7 +167,7 @@ class Video {
     }
 
     public function wasLikedBy() {
-        $query = $this->con->prepare("SELECT * FROM likes WHERE username= :username AND videoId= :videoId");
+        $query = $this->con->prepare("SELECT * FROM likes WHERE username=username AND videoId=videoId");
         $query->bindParam(":username", $username);
         $query->bindParam(":videoId", $id);
 
@@ -180,7 +180,7 @@ class Video {
     }
 
     public function wasDislikedBy() {
-        $query = $this->con->prepare("SELECT * FROM dislikes WHERE username= :username AND videoId= :videoId");
+        $query = $this->con->prepare("SELECT * FROM dislikes WHERE username=username AND videoId=videoId");
         $query->bindParam(":username", $username);
         $query->bindParam(":videoId", $id);
 
@@ -193,7 +193,7 @@ class Video {
     }
 
     public function getNumberOfComments() {
-        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId= :videoId");
+        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=videoId");
         $query->bindParam(":videoId", $id);
 
         $id = $this->getId();
@@ -204,7 +204,7 @@ class Video {
     }
 
     public function getComments() {
-        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId= :videoId AND responseTo=0 ORDER by datePosted DESC");
+        $query = $this->con->prepare("SELECT * FROM comments WHERE videoId=videoId AND responseTo=0 ORDER by datePosted DESC");
         $query->bindParam(":videoId", $id);
 
         $id = $this->getId();
@@ -222,7 +222,7 @@ class Video {
     }
 
     public function getThumbnail() {
-        $query = $this->con->prepare("SELECT filePath FROM thumbnails WHERE videoId= :videoId AND selected=1");
+        $query = $this->con->prepare("SELECT filePath FROM thumbnails WHERE videoId=videoId AND selected=1");
         $query->bindParam(":videoId", $videoId);
         $videoId = $this->getId();
         $query->execute();

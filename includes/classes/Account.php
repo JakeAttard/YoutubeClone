@@ -11,7 +11,7 @@ class Account {
     public function login($username, $password) {
         $password = hash("sha512", $password);
 
-        $query = $this->con->prepare("SELECT * FROM users WHERE username=username AND password=password");
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username AND password=:password");
         $query->bindParam(":username", $username);
         $query->bindParam(":password", $password);
 
@@ -45,7 +45,7 @@ class Account {
         $this->validateNewEmail($email, $username);
 
         if(empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE users SET firstName=firstName, lastName=lastName, email=email WHERE username=username");
+            $query = $this->con->prepare("UPDATE users SET firstName= :firstName, lastName= :lastName, email= :email WHERE username= :username");
             $query->bindParam(":firstName", $firstName);
             $query->bindParam(":lastName", $lastName);
             $query->bindParam(":email", $email);
@@ -62,7 +62,7 @@ class Account {
         $this->validatePasswords($newPassword, $newPasswordConfirm);
 
         if(empty($this->errorArray)) {
-            $query = $this->con->prepare("UPDATE users SET password=newPassword WHERE username=username");
+            $query = $this->con->prepare("UPDATE users SET password= :newPassword WHERE username= :username");
             $newPassword = hash("sha512", $newPassword);
             $query->bindParam(":newPassword", $newPassword);
             $query->bindParam(":username", $username);
@@ -76,7 +76,7 @@ class Account {
     private function validateOldPassword($oldPassword, $username) {
         $newPassword = hash("sha512", $oldPassword);
 
-        $query = $this->con->prepare("SELECT * FROM users WHERE username=username AND password=newPassword");
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:username AND password=:newPassword");
         $query->bindParam(":username", $username);
         $query->bindParam(":newPassword", $newPassword);
 
@@ -121,7 +121,7 @@ class Account {
             return;
         }
         
-        $query = $this->con->prepare("SELECT username FROM users WHERE username=username");
+        $query = $this->con->prepare("SELECT username FROM users WHERE username=:username");
         $query->bindParam(":username", $username);
         $query->execute();
 
@@ -141,7 +141,7 @@ class Account {
             return;
         }
         
-        $query = $this->con->prepare("SELECT email FROM users WHERE email=email");
+        $query = $this->con->prepare("SELECT email FROM users WHERE email=:email");
         $query->bindParam(":email", $email);
         $query->execute();
 
@@ -157,7 +157,7 @@ class Account {
             return;
         }
         
-        $query = $this->con->prepare("SELECT email FROM users WHERE email=email AND username != username");
+        $query = $this->con->prepare("SELECT email FROM users WHERE email=:email AND username != :username");
         $query->bindParam(":email", $email);
         $query->bindParam(":username", $username);
         $query->execute();
